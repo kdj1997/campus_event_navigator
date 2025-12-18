@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="dashboard-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span>
+          <span>EVENT</span>
+          <span>NAVIGATOR</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="{{ url_for('dashboard') }}">
+          <span class="sidebar-icon">🏠</span>
+          <span>Home Page</span>
+        </a>
+        <a class="sidebar-item" href="{{ url_for('join_club') }}">
+          <span class="sidebar-icon">📘</span>
+          <span>Join Club</span>
+        </a>
+        <a class="sidebar-item" href="{{ url_for('explore_events') }}">
+          <span class="sidebar-icon">🔍</span>
+          <span>Explore Events</span>
+        </a>
+        <a class="sidebar-item" href="{{ url_for('my_events') }}">
+          <span class="sidebar-icon">♡</span>
+          <span>My Events</span>
+        </a>
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">
+          <span class="sidebar-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-profile">
+        <!-- Active class here for Profile page highlight -->
+        <a href="{{ url_for('profile') }}" class="sidebar-item sidebar-profile-link active">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN PROFILE CONTENT -->
+    <main class="main-content">
+      <div class="page-header">Profile</div>
+
+      <div class="profile-container">
+        <!-- User Info -->
+        <div class="user-info">
+          <!-- Replace src with your uploaded image -->
+          <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile Photo" class="user-avatar">
+          <div class="user-details">
+            <h2>Aya Karimova</h2>
+            <p class="role">Book Club member</p>
+          </div>
+        </div>
+
+        <!-- Menu Options -->
+        <ul class="profile-menu">
+          <!-- Link to Edit Profile Page -->
+          <li class="profile-menu-item" onclick="location.href='edit-profile.html'">
+            <div class="menu-left">
+              <span class="menu-icon">⚙️</span>
+              <span>Edit Profile</span>
+            </div>
+            <span class="arrow-icon">›</span>
+          </li>
+
+          <!-- Trigger Modal for Password -->
+          <li class="profile-menu-item" onclick="document.getElementById('passwordModal').classList.add('active')">
+            <div class="menu-left">
+              <span class="menu-icon">🔒</span>
+              <span>Change Password</span>
+            </div>
+            <span class="arrow-icon">›</span>
+          </li>
+
+          <!-- Toggle Switch -->
+          <li class="profile-menu-item">
+            <div class="menu-left">
+              <span class="menu-icon">🔔</span>
+              <span>Push Notification</span>
+            </div>
+            <label class="switch">
+              <!-- 'checked' attribute makes it green (ON). Remove it for off. -->
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+            <!-- Note: To get the Orange color from Image 1, replace span above with:
+                 <span class="slider orange-state"></span> -->
+          </li>
+        </ul>
+
+        <a href="#" class="logout-link">
+          Log Out <span style="transform: rotate(180deg);">↪</span>
+        </a>
+      </div>
+    </main>
+
+    <!-- CHANGE PASSWORD MODAL (Hidden by default) -->
+    <div id="passwordModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-back" onclick="document.getElementById('passwordModal').classList.remove('active')">‹</div>
+          <div class="modal-title">Change Password</div>
+        </div>
+        
+        <form>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="New Password">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirm Password">
+          </div>
+          <button type="button" class="save-btn" onclick="document.getElementById('passwordModal').classList.remove('active')">Save</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Landing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo-block">
+        <div class="logo-icon">📍</div>
+        <div>
+          <div class="logo-text-main">Campus Event Navigator</div>
+        </div>
+      </div>
+
+      <div class="header-buttons">
+       
+        <a href="{{ url_for('login') }}"><button class="btn btn-login">Login</button></a>
+        <a href="{{ url_for('register') }}"><button class="btn btn-login">Register</button></a>
+      </div>
+    </header>
+
+      <div class="hero-image-wrapper">
+        <img src="{{ url_for('static', filename='hero.png') }}" alt="Campus event students illustration" class="hero-image" />
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span>
+          <span>EVENT</span>
+          <span>NAVIGATOR</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <!-- Active link for Dashboard -->
+        <a class="sidebar-item sidebar-item-active" href="admin-dashboard.html">
+          <span class="sidebar-icon">🏠</span>
+          <span>Home Page</span>
+        </a>
+        
+        <!-- Updated links to new admin pages -->
+        <a class="sidebar-item" href="admin-club.html">
+          <span class="sidebar-icon">📘</span>
+          <span>Club</span>
+        </a>
+        <a class="sidebar-item" href="admin-events.html">
+          <span class="sidebar-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a class="sidebar-item" href="admin-explore.html">
+          <span class="sidebar-icon">🔍</span>
+          <span>Explore Events</span>
+        </a>
+        <a class="sidebar-item" href="admin-myevents.html">
+          <span class="sidebar-icon">♡</span>
+          <span>My Events</span>
+        </a>
+        <a class="sidebar-item" href="admin-notifications.html">
+          <span class="sidebar-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-profile">
+        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <header class="content-header-row" style="display:block; margin-bottom: 40px;">
+        <h1 class="page-title">Dashboard</h1>
+        <p style="color:#666; margin-top:5px;">Admin panel</p>
+      </header>
+
+      <!-- TOP CARDS: quick stats -->
+      <!-- Added .cards-grid to align them nicely -->
+      <section class="cards-grid" style="margin-bottom: 40px;">
+        
+        <!-- Card 1: Links to Club Page -->
+        <div class="event-card-lg" onclick="location.href='admin-club.html'" style="cursor: pointer;">
+          <!-- Using placeholder image, replace src with your book-club.png -->
+          <img src="book-club.png" alt="Book Club" class="event-img-lg" style="height: 100px; object-fit: contain;">
+          <div class="card-title-lg">Book Club</div>
+        </div>
+
+        <!-- Card 2: Links to Events Page -->
+        <div class="event-card-lg" onclick="location.href='admin-events.html'" style="cursor: pointer;">
+          <!-- Using placeholder image, replace src with your concert.png -->
+          <img src="concert.png" alt="Concert" class="event-img-lg" style="height: 100px; object-fit: contain;">
+          <div class="card-title-lg">Concert</div>
+        </div>
+
+      </section>
+
+      <!-- ADMIN EVENT LIST -->
+      <section class="upcoming-section">
+        <h2 style="font-size: 20px; color: #1a3e35; margin-bottom: 20px;">Upcoming Events</h2>
+
+        <!-- Event Row 1 -->
+        <div class="notif-item" style="margin-bottom: 10px; justify-content: space-between;">
+          <div class="notif-content">
+            <div class="notif-title">Spring Festival Concert</div>
+            <div class="notif-subtitle">Mar 13 · Music Club</div>
+          </div>
+          <div class="event-actions" style="display: flex; gap: 10px;">
+            <button class="more-btn" style="width: auto; padding: 8px 20px; font-size: 14px;">Edit</button>
+            <button class="more-btn" style="width: auto; padding: 8px 20px; font-size: 14px; background: transparent; border: 1px solid #1a3e35; color: #1a3e35;">Delete</button>
+          </div>
+        </div>
+
+        <!-- Event Row 2 -->
+        <div class="notif-item" style="margin-bottom: 10px; justify-content: space-between;">
+          <div class="notif-content">
+            <div class="notif-title">Job Fair</div>
+            <div class="notif-subtitle">Oct 10 · Career Center</div>
+          </div>
+          <div class="event-actions" style="display: flex; gap: 10px;">
+            <button class="more-btn" style="width: auto; padding: 8px 20px; font-size: 14px;">Edit</button>
+            <button class="more-btn" style="width: auto; padding: 8px 20px; font-size: 14px; background: transparent; border: 1px solid #1a3e35; color: #1a3e35;">Delete</button>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>

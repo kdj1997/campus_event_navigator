@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo-block">
+        <div class="logo-icon">📍</div>
+        <div>
+          <div class="logo-text-main">Campus Event Navigator</div>
+        </div>
+      </div>
+
+      <div class="header-buttons">
+        <a href="{{ url_for('home') }}"><button class="btn btn-login">Back to Home</button></a>
+      </div>
+    </header>
+
+    <!-- LOGIN FORM WITH IMAGE -->
+    <div class="login-container">
+      <!-- Form Container -->
+      <div class="form-container">
+        <h2>Welcome back!</h2>
+        <p>Enter your Credentials to access your account</p>
+
+        <!-- один form с id -->
+        <form method="POST" action="{{ url_for('login') }}">
+          <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+
+          <!-- Remember me section -->
+          <div class="remember-container">
+            <input type="checkbox" id="remember" />
+            <label for="remember">Remember me</label>
+          </div>
+
+          <button type="submit" class="btn btn-register">Login</button>
+        </form>
+
+        <div class="form-footer">
+          <p><a href="#">Forgot password?</a></p>
+        </div>
+
+        <div class="form-footer">
+          <p>Or</p>
+          <button class="btn btn-login">Sign in with Google</button>
+          <button class="btn btn-login">Sign in with Apple</button>
+        </div>
+
+        <div class="form-footer">
+          <p>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></p>
+        </div>
+      </div>
+
+      <!-- Image Section -->
+      <div class="login-image-wrapper">
+        <img src="{{ url_for('static', filename='register.png') }}" alt="Login illustration" class="login-image" />
+      </div>
+    </div>
+  </div>
+
+ 
+</body>
+</html>

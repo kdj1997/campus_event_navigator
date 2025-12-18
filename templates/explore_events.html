@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Explore Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard-page">
+
+    <!-- USER SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span>
+          <span>EVENT</span>
+          <span>NAVIGATOR</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="dashboard.html">
+          <span class="sidebar-icon">🏠</span>
+          <span>Home Page</span>
+        </a>
+        <a class="sidebar-item" href="join-club.html">
+          <span class="sidebar-icon">📘</span>
+          <span>Join Club</span>
+        </a>
+        <!-- Active -->
+        <a class="sidebar-item sidebar-item-active" href="explore-events.html">
+          <span class="sidebar-icon">🔍</span>
+          <span>Explore Events</span>
+        </a>
+        <a class="sidebar-item" href="my-events.html">
+          <span class="sidebar-icon">♡</span>
+          <span>My Events</span>
+        </a>
+        <a class="sidebar-item" href="notifications.html">
+          <span class="sidebar-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-profile">
+        <a href="profile.html" class="sidebar-item sidebar-profile-link">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="page-header">Explore Events</div>
+
+      <!-- Search Bar -->
+      <div class="search-bar-row">
+        <input type="text" class="search-input" placeholder="Search">
+        <button class="search-btn">🔍</button>
+      </div>
+
+      <div class="content-header-row">
+        <h1 class="page-title">Explore Events</h1>
+      </div>
+      <div class="section-label">Filter</div>
+
+      <!-- Events Grid -->
+      <div class="cards-grid">
+        
+        <!-- Card 1: Concert -->
+        <div class="event-card-lg">
+          <div class="heart-icon heart-red">❤</div>
+          <!-- Replace src with your 'concert.png' -->
+          <img src="concert.png" alt="Concert" class="event-img-lg">
+          <h3 class="card-title-lg">Concert</h3>
+          <p class="card-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
+          </p>
+          <button class="more-btn" onclick="location.href='event-concert.html'">More details</button>
+        </div>
+
+        <!-- Card 2: Job Fair -->
+        <div class="event-card-lg">
+          <div class="heart-icon heart-outline">♡</div>
+          <!-- Replace src with your 'jobfair-card.png' -->
+          <img src="jobfair-card.png" alt="Job Fair" class="event-img-lg">
+          <h3 class="card-title-lg">Job Fair</h3>
+          <p class="card-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
+          </p>
+          <button class="more-btn" onclick="location.href='event-jobfair.html'">More details</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

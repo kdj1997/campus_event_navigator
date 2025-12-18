@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - My Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="dashboard-page">
+    
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text"><span>CAMPUS</span><span>EVENT</span><span>NAVIGATOR</span></div>
+      </div>
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="admin-dashboard.html"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item" href="admin-club.html"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item" href="admin-events.html"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="admin-explore.html"><span class="sidebar-icon">🔍</span> Explore Events</a>
+        <!-- Active -->
+        <a class="sidebar-item sidebar-item-active" href="admin-myevents.html"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="admin-notifications.html"><span class="sidebar-icon">🔔</span> Notifications</a>
+      </nav>
+      <div class="sidebar-profile">
+        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="admin-page-header">My Events Admin</div>
+
+      <!-- Search -->
+      <div class="search-bar-row">
+        <input type="text" class="search-input" placeholder="Search">
+        <button class="search-btn">🔍</button>
+      </div>
+
+      <div class="content-header-row">
+        <h1 class="page-title">My Events</h1>
+      </div>
+      <div class="section-label">Filter</div>
+
+      <!-- Grid (Single Item in image) -->
+      <div class="cards-grid">
+        
+        <!-- Card: Concert -->
+        <div class="event-card-lg">
+          <div class="heart-icon heart-red">❤</div>
+          <img src="concert.png" alt="Concert" class="event-img-lg">
+          <h3 class="card-title-lg">Concert</h3>
+          <p class="card-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
+          </p>
+          <button class="more-btn">More details</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

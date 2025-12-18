@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard-page">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span><span>EVENT</span><span>NAVIGATOR</span>
+        </div>
+      </div>
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="admin-dashboard.html"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <!-- Active -->
+        <a class="sidebar-item sidebar-item-active" href="admin-club.html"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item" href="admin-events.html"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="admin-explore.html"><span class="sidebar-icon">🔍</span> Explore Events</a>
+        <a class="sidebar-item" href="admin-myevents.html"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="admin-notifications.html"><span class="sidebar-icon">🔔</span> Notifications</a>
+      </nav>
+      <div class="sidebar-profile">
+        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+      <div class="admin-page-header">Club Admin</div>
+
+      <div class="content-header-row">
+        <!-- Replace with book icon image -->
+        <img src="book-club.png" alt="Book" class="club-header-icon" style="width:40px;">
+        <h1 class="page-title">Book Club</h1>
+        <span class="edit-icon-lg">✎</span>
+      </div>
+
+      <!-- Information Section -->
+      <div class="admin-form-section">
+        <div class="section-label">Information</div>
+        <textarea class="form-control-box" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</textarea>
+      </div>
+
+      <!-- Requirements Section -->
+      <div class="admin-form-section">
+        <div class="section-label">
+          Requirements 
+          <div class="add-btn-circle">+</div>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Interest in reading, writing, or literature discussions.">
+          <span class="remove-icon">✕</span>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Attend at least two meetings per month.">
+          <span class="remove-icon">✕</span>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Contribute to at least one book review.">
+          <span class="remove-icon">✕</span>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Friendly attitude and willingness to share ideas.">
+          <span class="remove-icon">✕</span>
+        </div>
+      </div>
+
+      <!-- Contacts Section -->
+      <div class="admin-form-section">
+        <div class="section-label">Contacts</div>
+        
+        <div class="contact-group">
+          <div class="contact-label">Club Leader</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="Alma Karimova">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Email</div>
+          <div class="contact-input-wrapper">
+            <input type="email" class="contact-input" value="alma_karimova@gmail.com">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Phone</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="+7 (700) 1234567">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Office Hours</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="Monday & Thursday, 15:00-17:00, Library Room 203">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="@sdu.bookclub">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

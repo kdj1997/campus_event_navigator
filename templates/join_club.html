@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Join Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="dashboard-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span>
+          <span>EVENT</span>
+          <span>NAVIGATOR</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="dashboard.html">
+          <span class="sidebar-icon">🏠</span>
+          <span>Home Page</span>
+        </a>
+        
+        <!-- Only this one has 'sidebar-item-active' -->
+        <a class="sidebar-item sidebar-item-active" href="join-club.html">
+          <span class="sidebar-icon">📄</span>
+          <span>Join Club</span>
+        </a>
+        
+        <a class="sidebar-item" href="explore-events.html">
+          <span class="sidebar-icon">🔍</span>
+          <span>Explore Events</span>
+        </a>
+        
+        <a class="sidebar-item" href="my-events.html">
+          <span class="sidebar-icon">♡</span>
+          <span>My Events</span>
+        </a>
+        
+        <a class="sidebar-item" href="notifications.html">
+          <span class="sidebar-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+
+      <!-- Fixed Sidebar Profile Link -->
+      <div class="sidebar-profile">
+        <a href="profile.html" class="sidebar-item sidebar-profile-link">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="join-main">
+      <!-- Search Bar -->
+      <div class="join-search-row">
+        <input class="join-search-input" type="text" placeholder="Search">
+        <button class="join-search-btn">🔍</button>
+      </div>
+
+      <!-- Clubs Grid -->
+      <section class="join-cards-grid">
+        
+        <!-- Book Club -->
+        <article class="club-card">
+          <div class="club-card-header">
+            <img src="book-club.png" alt="Book Club" class="club-icon">
+            <h2 class="club-title">Book Club</h2>
+          </div>
+          <p class="club-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
+          </p>
+          <button class="club-request-btn" onclick="window.location.href='book-club.html'">
+            Request
+          </button>
+        </article>
+
+        <!-- Robot Club -->
+        <article class="club-card">
+          <div class="club-card-header">
+            <img src="robot-club-icon.png" alt="Robot Club" class="club-icon">
+            <h2 class="club-title">Robot Club</h2>
+          </div>
+          <p class="club-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
+          </p>
+          <button class="club-request-btn">
+            Request
+          </button>
+        </article>
+
+        <!-- Debate Club -->
+        <article class="club-card">
+          <div class="club-card-header">
+            <img src="debate-club-icon.png" alt="Debate Club" class="club-icon">
+            <h2 class="club-title">Debate Club</h2>
+          </div>
+          <p class="club-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
+          </p>
+          <button class="club-request-btn">
+            Request
+          </button>
+        </article>
+
+        <!-- Art Club -->
+        <article class="club-card">
+          <div class="club-card-header">
+            <img src="art-club-icon.png" alt="Art Club" class="club-icon">
+            <h2 class="club-title">Art Club</h2>
+          </div>
+          <p class="club-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
+          </p>
+          <button class="club-request-btn">
+            Request
+          </button>
+        </article>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>

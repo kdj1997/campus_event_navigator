@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Book Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard-page">
+
+    <!-- SIDEBAR тот же -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span>
+          <span>EVENT</span>
+          <span>NAVIGATOR</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="dashboard.html">
+          <span class="sidebar-icon">🏠</span>
+          <span>Home Page</span>
+        </a>
+        <a class="sidebar-item sidebar-item-active" href="join-club.html">
+          <span class="sidebar-icon">📄</span>
+          <span>Join Club</span>
+        </a>
+        <a class="sidebar-item" href="#">
+          <span class="sidebar-icon">🔍</span>
+          <span>Explore Events</span>
+        </a>
+        <a class="sidebar-item" href="#">
+          <span class="sidebar-icon">♡</span>
+          <span>My Events</span>
+        </a>
+        <a class="sidebar-item" href="#">
+          <span class="sidebar-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-profile">
+        <span class="sidebar-icon">👤</span>
+        <span>Profile</span>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="book-main">
+
+      <section class="book-card">
+        <!-- стрелка назад -->
+        <button class="book-back-btn" onclick="window.location.href='join-club.html'">
+          ←
+        </button>
+
+        <!-- заголовок с иконкой -->
+        <div class="book-header">
+          <img src="book-club.png" alt="Book Club" class="book-icon">
+          <h1 class="book-title">Book Club</h1>
+        </div>
+
+        <!-- основной текст -->
+        <p class="book-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+
+        <!-- два блока: Contacts и Requirements -->
+        <div class="book-columns">
+          <div class="book-box">
+            <h2 class="book-box-title">Contacts</h2>
+            <ul class="book-list">
+              <li>Club Leader: Alma Karimova</li>
+              <li>Email: alma_karimova@gmail.com</li>
+              <li>Phone: +7 (700) 123-4567</li>
+              <li>Office Hours: Monday & Thursday, 15:00–17:00, Library Room 203</li>
+              <li>Instagram: @sdu.bookclub</li>
+            </ul>
+          </div>
+
+          <div class="book-box">
+            <h2 class="book-box-title">Requirements</h2>
+            <ul class="book-list">
+              <li>Interest in reading, writing, or literature discussions.</li>
+              <li>Attend at least two meetings per month.</li>
+              <li>Contribute to at least one book review or event each semester.</li>
+              <li>Friendly attitude and willingness to share ideas with others.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- кнопка Request -->
+        <div class="book-request-row">
+          <button class="club-request-btn">Request</button>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Event Navigator – Admin Edit Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard-page">
+
+    <!-- SIDEBAR (Admin Links) -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text">
+          <span>CAMPUS</span>
+          <span>EVENT</span>
+          <span>NAVIGATOR</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="admin-dashboard.html">
+          <span class="sidebar-icon">🏠</span>
+          <span>Home Page</span>
+        </a>
+        <a class="sidebar-item" href="admin-club.html">
+          <span class="sidebar-icon">📘</span>
+          <span>Club</span>
+        </a>
+        <a class="sidebar-item" href="admin-events.html">
+          <span class="sidebar-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a class="sidebar-item" href="admin-explore.html">
+          <span class="sidebar-icon">🔍</span>
+          <span>Explore Events</span>
+        </a>
+        <a class="sidebar-item" href="admin-myevents.html">
+          <span class="sidebar-icon">♡</span>
+          <span>My Events</span>
+        </a>
+        <a class="sidebar-item" href="admin-notifications.html">
+          <span class="sidebar-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-profile">
+        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link active">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- EDIT PROFILE CONTENT -->
+    <main class="main-content">
+      <div class="admin-page-header">Profile Admin</div>
+
+      <div class="profile-container">
+        <!-- Header with Back Button (Points to Admin Profile) -->
+        <div class="edit-header">
+          <a href="admin-profile.html" class="back-btn">‹</a>
+          <div class="center-title">Edit Profile</div>
+        </div>
+
+        <!-- Avatar -->
+        <div class="edit-avatar-section">
+          <!-- Replace src with your admin profile image -->
+          <img src="profile.png" alt="Profile" class="user-avatar" style="width: 100px; height: 100px;">
+          <div class="camera-icon-badge">📷</div>
+        </div>
+
+        <!-- Edit Form (Pre-filled with Admin Data) -->
+        <form>
+          <div class="form-group">
+            <label>First Name</label>
+            <div class="form-input-wrapper">
+              <input type="text" class="form-control" value="Alma">
+              <span class="edit-pencil">✎</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Last Name</label>
+            <div class="form-input-wrapper">
+              <input type="text" class="form-control" value="Karimova">
+              <span class="edit-pencil">✎</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>E-Mail</label>
+            <div class="form-input-wrapper">
+              <input type="email" class="form-control" value="alma_karimova2003@gmail.com">
+              <span class="edit-pencil">✎</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mobile</label>
+            <div class="form-input-wrapper">
+              <input type="tel" class="form-control" value="+7(777)7777777">
+              <span class="edit-pencil">✎</span>
+            </div>
+          </div>
+
+          <div class="save-btn-container">
+            <!-- Returns to Admin Profile -->
+            <button type="button" class="save-btn" onclick="location.href='admin-profile.html'">Save</button>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

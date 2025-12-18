@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard-page">
+    
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📅</div>
+        <div class="sidebar-logo-text"><span>CAMPUS</span><span>EVENT</span><span>NAVIGATOR</span></div>
+      </div>
+      <nav class="sidebar-menu">
+        <a class="sidebar-item" href="admin-dashboard.html"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item" href="admin-club.html"><span class="sidebar-icon">📘</span> Club</a>
+        <!-- Active -->
+        <a class="sidebar-item sidebar-item-active" href="admin-events.html"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="admin-explore.html"><span class="sidebar-icon">🔍</span> Explore Events</a>
+        <a class="sidebar-item" href="admin-myevents.html"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="admin-notifications.html"><span class="sidebar-icon">🔔</span> Notifications</a>
+      </nav>
+      <div class="sidebar-profile">
+        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="admin-page-header">Events Admin</div>
+
+      <!-- Top Row: Card + Title -->
+      <div class="event-top-layout">
+        <!-- Card Preview -->
+        <div class="event-preview-card">
+          <!-- Replace with Job Fair Image -->
+          <img src="jobfair-card.png" alt="Job Fair" class="event-preview-img">
+        </div>
+        
+        <!-- Header -->
+        <div style="flex:1;">
+          <div class="content-header-row">
+            <h1 class="page-title">Events</h1>
+            <div class="add-btn-circle">+</div>
+          </div>
+          <div class="content-header-row" style="margin-top:-20px;">
+            <h2 style="font-size: 24px;">Job Fair</h2>
+            <span class="edit-icon-lg">✎</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="admin-form-section">
+        <div class="section-label">Description</div>
+        <textarea class="form-control-box" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+      </div>
+
+      <div class="admin-form-section">
+        <div class="section-label">
+          Event Highlights 
+          <div class="add-btn-circle">+</div>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+          <span class="remove-icon">✕</span>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+          <span class="remove-icon">✕</span>
+        </div>
+        <div class="list-input-group">
+          <input type="text" class="list-input" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+          <span class="remove-icon">✕</span>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="admin-form-section">
+        
+        <div class="contact-group">
+          <div class="contact-label">Date *</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="October 10">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Time *</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="15:00">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Location *</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" value="SDU Life">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+        <div class="contact-group">
+          <div class="contact-label">Money</div>
+          <div class="contact-input-wrapper">
+            <input type="text" class="contact-input" placeholder="">
+            <span class="pencil-icon">✎</span>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
