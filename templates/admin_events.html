@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,378 @@ html
   <title>Admin - Events</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Дополнительные стили для управления событиями */
+    .event-top-layout {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+    
+    .event-preview-card {
+      width: 300px;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+    
+    .event-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .content-header-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #212529;
+      margin: 0;
+    }
+    
+    .add-btn-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #4dabf7;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: all 0.2s;
+      border: none;
+      flex-shrink: 0;
+    }
+    
+    .add-btn-circle:hover {
+      background: #339af0;
+      transform: scale(1.05);
+    }
+    
+    .edit-icon-lg {
+      font-size: 1.5rem;
+      color: #6c757d;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    .delete-button {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .delete-button:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+    }
+    
+    .admin-form-section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .section-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #343a40;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .form-control-box {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    
+    .form-control-box:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .list-input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .list-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+    
+    .list-input:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .remove-icon {
+      margin-left: 0.75rem;
+      color: #dc3545;
+      cursor: pointer;
+      font-size: 1.1rem;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .remove-icon:hover {
+      background-color: #f8d7da;
+    }
+    
+    .contact-group {
+      margin-bottom: 1.25rem;
+    }
+    
+    .contact-label {
+      font-weight: 500;
+      color: #495057;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-input-wrapper {
+      position: relative;
+    }
+    
+    .contact-input {
+      width: 100%;
+      padding: 0.75rem 3rem 0.75rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+    
+    .contact-input:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .pencil-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6c757d;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    
+    .pencil-icon:hover {
+      color: #4dabf7;
+    }
+    
+    .save-btn {
+      background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 15px rgba(51, 154, 240, 0.2);
+    }
+    
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(51, 154, 240, 0.3);
+    }
+    
+    .save-btn:active {
+      transform: translateY(0);
+    }
+    
+    .flash-messages {
+      margin-bottom: 1.5rem;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 10px;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .new-highlight-form {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .new-highlight-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+    
+    .new-highlight-btn {
+      background: #51cf66;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    
+    .new-highlight-btn:hover {
+      background: #40c057;
+    }
+    
+    .highlight-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.75rem;
+      flex-shrink: 0;
+    }
+    
+    .update-btn {
+      background: #4dabf7;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .event-title-input {
+      font-size: 24px;
+      font-weight: 600;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      width: 300px;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+    
+    .event-title-input:focus {
+      outline: none;
+      border-color: #4dabf7;
+    }
+    
+    .highlight-form {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      gap: 0.75rem;
+    }
+    
+    .event-header-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1;
+    }
+    
+    .event-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .event-title-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .event-action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .title-form-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-page">
@@ -20,7 +391,6 @@ html
         <a class="sidebar-item" href="{{ url_for('admin_club') }}"><span class="sidebar-icon">📘</span> Club</a>
         <a class="sidebar-item sidebar-item-active" href="{{ url_for('admin_events') }}"><span class="sidebar-icon">📅</span> Events</a>
         <a class="sidebar-item" href="{{ url_for('admin_explore') }}"><span class="sidebar-icon">🔍</span> Explore Events</a>
-        <!-- Active -->
         <a class="sidebar-item" href="{{ url_for('admin_myevents') }}"><span class="sidebar-icon">♡</span> My Events</a>
         <a class="sidebar-item" href="{{ url_for('admin_notifications') }}"><span class="sidebar-icon">🔔</span> Notifications</a>
       </nav>
@@ -41,30 +411,44 @@ html
         </div>
         
         <!-- Header -->
-        <div style="flex:1;">
-          <div class="content-header-row">
-            <h1 class="page-title">Events</h1>
-            <div class="add-btn-circle">+</div>
+        <div class="event-header-container">
+          <div class="event-header-actions">
+            <div class="event-title-section">
+              <h1 class="page-title">Events</h1>
+              <div class="add-btn-circle">+</div>
+            </div>
           </div>
-          <div class="content-header-row" style="margin-top:-20px;">
-            <h2 style="font-size: 24px;">Job Fair</h2>
-            <span class="edit-icon-lg">✎</span>
-            <button class="delete-button">Delete</button> <!-- Добавлена кнопка Delete -->
+          
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <div class="title-form-container">
+              <h2 class="event-title-input" style="border: none; padding: 0; width: auto;">Job Fair</h2>
+              <span class="edit-icon-lg">✎</span>
+            </div>
+            
+            <div class="event-action-buttons">
+              <button class="save-btn" style="padding: 0.5rem 1.5rem;">Save Title</button>
+              <button class="delete-button">Delete Event</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Form -->
+      <!-- Description Section -->
       <div class="admin-form-section">
         <div class="section-label">Description</div>
         <textarea class="form-control-box" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+        
+        <div style="margin-top: 1rem; text-align: right;">
+          <button class="save-btn">Save Description</button>
+        </div>
       </div>
 
+      <!-- Event Highlights Section -->
       <div class="admin-form-section">
         <div class="section-label">
           Event Highlights 
-          <div class="add-btn-circle">+</div>
         </div>
+        
         <div class="list-input-group">
           <input type="text" class="list-input" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
           <span class="remove-icon">✕</span>
@@ -76,10 +460,16 @@ html
         <div class="list-input-group">
           <input type="text" class="list-input" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
           <span class="remove-icon">✕</span>
+        </div>
+        
+        <!-- Форма для добавления нового highlight -->
+        <div class="new-highlight-form">
+          <input type="text" class="new-highlight-input" placeholder="Enter new highlight...">
+          <button class="new-highlight-btn">Add Highlight</button>
         </div>
       </div>
 
-      <!-- Details -->
+      <!-- Details Section -->
       <div class="admin-form-section">
         
         <div class="contact-group">
@@ -89,6 +479,7 @@ html
             <span class="pencil-icon">✎</span>
           </div>
         </div>
+        
         <div class="contact-group">
           <div class="contact-label">Time *</div>
           <div class="contact-input-wrapper">
@@ -106,11 +497,15 @@ html
         </div>
 
         <div class="contact-group">
-          <div class="contact-label">Money</div>
+          <div class="contact-label">Price</div>
           <div class="contact-input-wrapper">
-            <input type="text" class="contact-input" placeholder="">
+            <input type="text" class="contact-input" placeholder="Free">
             <span class="pencil-icon">✎</span>
           </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: right;">
+          <button class="save-btn">Save All Details</button>
         </div>
 
       </div>

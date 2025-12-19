@@ -5,6 +5,263 @@
   <title>Admin - Club</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Стили остаются теми же */
+    .admin-form-section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .section-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #343a40;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .add-btn-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #4dabf7;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+    }
+    
+    .add-btn-circle:hover {
+      background: #339af0;
+      transform: scale(1.05);
+    }
+    
+    .form-control-box {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 120px;
+      transition: border-color 0.2s;
+    }
+    
+    .form-control-box:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .list-input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .list-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    
+    .list-input:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .remove-icon {
+      margin-left: 0.75rem;
+      color: #dc3545;
+      cursor: pointer;
+      font-size: 1.1rem;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    
+    .remove-icon:hover {
+      background-color: #f8d7da;
+    }
+    
+    .contact-group {
+      margin-bottom: 1.25rem;
+    }
+    
+    .contact-label {
+      font-weight: 500;
+      color: #495057;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-input-wrapper {
+      position: relative;
+    }
+    
+    .contact-input {
+      width: 100%;
+      padding: 0.75rem 3rem 0.75rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    
+    .contact-input:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .pencil-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6c757d;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    
+    .pencil-icon:hover {
+      color: #4dabf7;
+    }
+    
+    .save-btn {
+      background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 15px rgba(51, 154, 240, 0.2);
+    }
+    
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(51, 154, 240, 0.3);
+    }
+    
+    .save-btn:active {
+      transform: translateY(0);
+    }
+    
+    .delete-button {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .delete-button:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+    }
+    
+    .flash-messages {
+      margin-bottom: 1.5rem;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 10px;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .new-requirement-form {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .new-requirement-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .new-requirement-btn {
+      background: #51cf66;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    
+    .new-requirement-btn:hover {
+      background: #40c057;
+    }
+    
+    .requirement-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.75rem;
+    }
+    
+    .update-btn {
+      background: #4dabf7;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-page">
@@ -22,7 +279,6 @@
         <a class="sidebar-item sidebar-item-active" href="{{ url_for('admin_club') }}"><span class="sidebar-icon">📘</span> Club</a>
         <a class="sidebar-item" href="{{ url_for('admin_events') }}"><span class="sidebar-icon">📅</span> Events</a>
         <a class="sidebar-item" href="{{ url_for('admin_explore') }}"><span class="sidebar-icon">🔍</span> Explore Events</a>
-        <!-- Active -->
         <a class="sidebar-item" href="{{ url_for('admin_myevents') }}"><span class="sidebar-icon">♡</span> My Events</a>
         <a class="sidebar-item" href="{{ url_for('admin_notifications') }}"><span class="sidebar-icon">🔔</span> Notifications</a>
       </nav>
@@ -35,89 +291,169 @@
     <main class="main-content">
       <div class="admin-page-header">Club Admin</div>
 
+      <!-- Flash Messages -->
+      <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'danger' if category == 'danger' else 'success' }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+
       <div class="content-header-row">
-        <!-- Replace with book icon image -->
         <img src="{{ url_for('static', filename='book-club.png') }}" alt="Book" class="club-header-icon" style="width:40px;">
-        <h1 class="page-title">Book Club <span class="edit-icon-lg">✎</span></h1>
-        <button class="delete-button">Delete</button> <!-- Добавлена кнопка Delete -->
+        <h1 class="page-title">{{ club.name }} <span class="edit-icon-lg">✎</span></h1>
+        <form method="POST" action="{{ url_for('admin_club') }}" style="display: inline;" onsubmit="return confirmDeleteClub()">
+          <input type="hidden" name="action" value="delete_club">
+          <button type="submit" class="delete-button">Delete Club</button>
+        </form>
       </div>
 
       <!-- Information Section -->
-      <div class="admin-form-section">
-        <div class="section-label">Information</div>
-        <textarea class="form-control-box" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</textarea>
-      </div>
+      <form method="POST" action="{{ url_for('admin_club') }}">
+        <input type="hidden" name="action" value="update_club">
+        
+        <div class="admin-form-section">
+          <div class="section-label">Information</div>
+          <textarea name="description" class="form-control-box" rows="5">{{ club.description }}</textarea>
+          
+          <div style="margin-top: 1rem; text-align: right;">
+            <button type="submit" class="save-btn">Save Information</button>
+          </div>
+        </div>
+
+        <!-- Contacts Section -->
+        <div class="admin-form-section">
+          <div class="section-label">Contacts</div>
+          
+          <div class="contact-group">
+            <div class="contact-label">Club Leader</div>
+            <div class="contact-input-wrapper">
+              <input type="text" name="leader" class="contact-input" value="{{ club.leader }}">
+              <span class="pencil-icon">✎</span>
+            </div>
+          </div>
+          
+          <div class="contact-group">
+            <div class="contact-label">Email</div>
+            <div class="contact-input-wrapper">
+              <input type="email" name="email" class="contact-input" value="{{ club.email }}">
+              <span class="pencil-icon">✎</span>
+            </div>
+          </div>
+
+          <div class="contact-group">
+            <div class="contact-label">Phone</div>
+            <div class="contact-input-wrapper">
+              <input type="text" name="phone" class="contact-input" value="{{ club.phone if club.phone else '' }}">
+              <span class="pencil-icon">✎</span>
+            </div>
+          </div>
+
+          <div class="contact-group">
+            <div class="contact-label">Office Hours</div>
+            <div class="contact-input-wrapper">
+              <input type="text" name="office_hours" class="contact-input" value="{{ club.office_hours if club.office_hours else '' }}">
+              <span class="pencil-icon">✎</span>
+            </div>
+          </div>
+
+          <div class="contact-group">
+            <div class="contact-label">Instagram</div>
+            <div class="contact-input-wrapper">
+              <input type="text" name="instagram" class="contact-input" value="{{ club.instagram if club.instagram else '' }}">
+              <span class="pencil-icon">✎</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; text-align: right;">
+            <button type="submit" class="save-btn">Save Contacts</button>
+          </div>
+        </div>
+      </form>
 
       <!-- Requirements Section -->
       <div class="admin-form-section">
         <div class="section-label">
           Requirements 
-          <div class="add-btn-circle">+</div> <!-- Добавлена кнопка плюс -->
         </div>
-        <div class="list-input-group">
-          <input type="text" class="list-input" value="Interest in reading, writing, or literature discussions.">
-          <span class="remove-icon">✕</span>
-        </div>
-        <div class="list-input-group">
-          <input type="text" class="list-input" value="Attend at least two meetings per month.">
-          <span class="remove-icon">✕</span>
-        </div>
-        <div class="list-input-group">
-          <input type="text" class="list-input" value="Contribute to at least one book review.">
-          <span class="remove-icon">✕</span>
-        </div>
-        <div class="list-input-group">
-          <input type="text" class="list-input" value="Friendly attitude and willingness to share ideas.">
-          <span class="remove-icon">✕</span>
-        </div>
-      </div>
-
-      <!-- Contacts Section -->
-      <div class="admin-form-section">
-        <div class="section-label">Contacts</div>
         
-        <div class="contact-group">
-          <div class="contact-label">Club Leader</div>
-          <div class="contact-input-wrapper">
-            <input type="text" class="contact-input" value="Alma Karimova">
-            <span class="pencil-icon">✎</span>
+        {% for requirement in requirements %}
+        <form method="POST" action="{{ url_for('admin_club') }}" class="list-input-group requirement-form" data-requirement-id="{{ requirement.id }}">
+          <input type="hidden" name="action" value="update_requirement">
+          <input type="hidden" name="requirement_id" value="{{ requirement.id }}">
+          <input type="text" name="requirement_text" class="list-input" value="{{ requirement.text }}">
+          
+          <div class="requirement-actions">
+            <button type="submit" class="update-btn">Update</button>
+            
+            <button type="button" 
+                    class="delete-btn"
+                    onclick="deleteRequirement(this)">
+              Delete
+            </button>
           </div>
-        </div>
-        <div class="contact-group">
-          <div class="contact-label">Email</div>
-          <div class="contact-input-wrapper">
-            <input type="email" class="contact-input" value="alma_karimova@gmail.com">
-            <span class="pencil-icon">✎</span>
-          </div>
-        </div>
-
-        <div class="contact-group">
-          <div class="contact-label">Phone</div>
-          <div class="contact-input-wrapper">
-            <input type="text" class="contact-input" value="+7 (700) 1234567">
-            <span class="pencil-icon">✎</span>
-          </div>
-        </div>
-
-        <div class="contact-group">
-          <div class="contact-label">Office Hours</div>
-          <div class="contact-input-wrapper">
-            <input type="text" class="contact-input" value="Monday & Thursday, 15:00-17:00, Library Room 203">
-            <span class="pencil-icon">✎</span>
-          </div>
-        </div>
-
-        <div class="contact-group">
-          <div class="contact-label">Instagram</div>
-          <div class="contact-input-wrapper">
-            <input type="text" class="contact-input" value="@sdu.bookclub">
-            <span class="pencil-icon">✎</span>
-          </div>
-        </div>
-
+        </form>
+        {% endfor %}
+        
+        <!-- Форма для добавления нового требования -->
+        <form method="POST" action="{{ url_for('admin_club') }}" class="new-requirement-form">
+          <input type="hidden" name="action" value="add_requirement">
+          <input type="text" name="new_requirement" class="new-requirement-input" placeholder="Enter new requirement..." required>
+          <button type="submit" class="new-requirement-btn">Add Requirement</button>
+        </form>
       </div>
 
     </main>
   </div>
+
+  <script>
+    // Функция для подтверждения удаления клуба
+    function confirmDeleteClub() {
+      return confirm('Are you sure you want to delete this club? This action cannot be undone.');
+    }
+    
+    // Функция для удаления требования
+    function deleteRequirement(button) {
+      if (confirm('Delete this requirement?')) {
+        // Находим родительскую форму
+        const form = button.closest('.requirement-form');
+        const actionInput = form.querySelector('input[name="action"]');
+        actionInput.value = 'delete_requirement';
+        form.submit();
+      }
+    }
+    
+    // Добавляем интерактивность полям ввода
+    document.querySelectorAll('.contact-input, .list-input, .new-requirement-input').forEach(input => {
+      input.addEventListener('focus', function() {
+        const pencil = this.parentElement.querySelector('.pencil-icon');
+        if (pencil) {
+          pencil.style.color = '#4dabf7';
+        }
+      });
+      
+      input.addEventListener('blur', function() {
+        const pencil = this.parentElement.querySelector('.pencil-icon');
+        if (pencil) {
+          pencil.style.color = '#6c757d';
+        }
+      });
+    });
+    
+    // Автофокус на поля при клике на pencil icon
+    document.querySelectorAll('.pencil-icon').forEach(icon => {
+      icon.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('input');
+        if (input) {
+          input.focus();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
