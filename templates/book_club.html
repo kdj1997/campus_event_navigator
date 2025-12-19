@@ -5,12 +5,12 @@
   <title>Campus Event Navigator – Book Club</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="dashboard-page">
 
-    <!-- SIDEBAR тот же -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo">
         <div class="sidebar-logo-icon">📅</div>
@@ -22,46 +22,47 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="dashboard.html">
+        <a class="sidebar-item" href="{{ url_for('dashboard') }}">
           <span class="sidebar-icon">🏠</span>
           <span>Home Page</span>
         </a>
-        <a class="sidebar-item sidebar-item-active" href="join-club.html">
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('join_club') }}">
           <span class="sidebar-icon">📄</span>
           <span>Join Club</span>
         </a>
-        <a class="sidebar-item" href="#">
+        <a class="sidebar-item" href="{{ url_for('explore_events') }}">
           <span class="sidebar-icon">🔍</span>
           <span>Explore Events</span>
         </a>
-        <a class="sidebar-item" href="#">
+        <a class="sidebar-item" href="{{ url_for('my_events') }}">
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
-        <a class="sidebar-item" href="#">
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
       </nav>
 
       <div class="sidebar-profile">
-        <span class="sidebar-icon">👤</span>
-        <span>Profile</span>
+        <a href="{{ url_for('profile') }}" class="sidebar-item sidebar-profile-link">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
       </div>
     </aside>
 
     <!-- MAIN -->
     <main class="book-main">
-
       <section class="book-card">
         <!-- стрелка назад -->
-        <button class="book-back-btn" onclick="window.location.href='join-club.html'">
+        <button class="book-back-btn" onclick="goBackToJoinClub()">
           ←
         </button>
 
         <!-- заголовок с иконкой -->
         <div class="book-header">
-          <img src="book-club.png" alt="Book Club" class="book-icon">
+          <img src="{{ url_for('static', filename='book-club.png') }}" alt="Book Club" class="book-icon">
           <h1 class="book-title">Book Club</h1>
         </div>
 
@@ -100,10 +101,24 @@
 
         <!-- кнопка Request -->
         <div class="book-request-row">
-          <button class="club-request-btn">Request</button>
+          <button class="club-request-btn" onclick="sendBookClubRequest()">Request</button>
         </div>
       </section>
     </main>
   </div>
+
+  <script>
+    // Функция для возврата на страницу Join Club
+    function goBackToJoinClub() {
+      window.location.href = "{{ url_for('join_club') }}";
+    }
+    
+    // Функция для отправки заявки в Book Club
+    function sendBookClubRequest() {
+      alert('Your request to join Book Club has been sent successfully!');
+      // Опционально: перенаправление обратно
+      // window.location.href = "{{ url_for('join_club') }}";
+    }
+  </script>
 </body>
 </html>

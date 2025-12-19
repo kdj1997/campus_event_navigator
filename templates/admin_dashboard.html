@@ -5,7 +5,7 @@
   <title>Campus Event Navigator – Admin Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="dashboard-page">
@@ -22,37 +22,17 @@
       </div>
 
       <nav class="sidebar-menu">
-        <!-- Active link for Dashboard -->
-        <a class="sidebar-item sidebar-item-active" href="admin-dashboard.html">
-          <span class="sidebar-icon">🏠</span>
-          <span>Home Page</span>
-        </a>
-        
-        <!-- Updated links to new admin pages -->
-        <a class="sidebar-item" href="admin-club.html">
-          <span class="sidebar-icon">📘</span>
-          <span>Club</span>
-        </a>
-        <a class="sidebar-item" href="admin-events.html">
-          <span class="sidebar-icon">📅</span>
-          <span>Events</span>
-        </a>
-        <a class="sidebar-item" href="admin-explore.html">
-          <span class="sidebar-icon">🔍</span>
-          <span>Explore Events</span>
-        </a>
-        <a class="sidebar-item" href="admin-myevents.html">
-          <span class="sidebar-icon">♡</span>
-          <span>My Events</span>
-        </a>
-        <a class="sidebar-item" href="admin-notifications.html">
-          <span class="sidebar-icon">🔔</span>
-          <span>Notifications</span>
-        </a>
+        <!-- ВНИМАНИЕ: Активным должен быть Dashboard, а не My Events! -->
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('admin_dashboard') }}"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item" href="{{ url_for('admin_club') }}"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item" href="{{ url_for('admin_events') }}"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_explore') }}"><span class="sidebar-icon">🔍</span> Explore Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_myevents') }}"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_notifications') }}"><span class="sidebar-icon">🔔</span> Notifications</a>
       </nav>
 
       <div class="sidebar-profile">
-        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link">
+        <a href="{{ url_for('admin_profile') }}" class="sidebar-item sidebar-profile-link">
           <span class="sidebar-icon">👤</span>
           <span>Profile</span>
         </a>
@@ -67,20 +47,17 @@
       </header>
 
       <!-- TOP CARDS: quick stats -->
-      <!-- Added .cards-grid to align them nicely -->
       <section class="cards-grid" style="margin-bottom: 40px;">
         
         <!-- Card 1: Links to Club Page -->
-        <div class="event-card-lg" onclick="location.href='admin-club.html'" style="cursor: pointer;">
-          <!-- Using placeholder image, replace src with your book-club.png -->
-          <img src="book-club.png" alt="Book Club" class="event-img-lg" style="height: 100px; object-fit: contain;">
+        <div class="event-card-lg" onclick="goToAdminClub()" style="cursor: pointer;">
+          <img src="{{ url_for('static', filename='book-club.png') }}" alt="Book Club" class="event-img-lg" style="height: 100px; object-fit: contain;">
           <div class="card-title-lg">Book Club</div>
         </div>
 
         <!-- Card 2: Links to Events Page -->
-        <div class="event-card-lg" onclick="location.href='admin-events.html'" style="cursor: pointer;">
-          <!-- Using placeholder image, replace src with your concert.png -->
-          <img src="concert.png" alt="Concert" class="event-img-lg" style="height: 100px; object-fit: contain;">
+        <div class="event-card-lg" onclick="goToAdminEvents()" style="cursor: pointer;">
+          <img src="{{ url_for('static', filename='concert.png') }}" alt="Concert" class="event-img-lg" style="height: 100px; object-fit: contain;">
           <div class="card-title-lg">Concert</div>
         </div>
 
@@ -117,5 +94,35 @@
       </section>
     </main>
   </div>
+
+  <script>
+    // Функция для перехода на страницу Club
+    function goToAdminClub() {
+      window.location.href = "{{ url_for('admin_club') }}";
+    }
+    
+    // Функция для перехода на страницу Events
+    function goToAdminEvents() {
+      window.location.href = "{{ url_for('admin_events') }}";
+    }
+    
+    // Также исправляем проблему с активным элементом в сайдбаре
+    document.addEventListener('DOMContentLoaded', function() {
+      // Проверяем, если на странице есть неверный активный элемент
+      const allLinks = document.querySelectorAll('.sidebar-item');
+      const currentPage = window.location.pathname;
+      
+      allLinks.forEach(link => {
+        // Удаляем все активные классы
+        link.classList.remove('sidebar-item-active');
+        
+        // Проверяем, совпадает ли ссылка с текущей страницей
+        const linkHref = link.getAttribute('href');
+        if (linkHref && currentPage.includes(linkHref.replace('/', ''))) {
+          link.classList.add('sidebar-item-active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <title>Campus Event Navigator – Job Fair</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">  <!-- Исправлено -->
 </head>
 <body>
   <div class="dashboard-page">
@@ -22,30 +22,30 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="dashboard.html">
+        <a class="sidebar-item" href="{{ url_for('dashboard') }}">  <!-- Исправлено -->
           <span class="sidebar-icon">🏠</span>
           <span>Home Page</span>
         </a>
-        <a class="sidebar-item" href="join-club.html">
+        <a class="sidebar-item" href="{{ url_for('join_club') }}">  <!-- Исправлено -->
           <span class="sidebar-icon">📘</span>
           <span>Join Club</span>
         </a>
-        <a class="sidebar-item sidebar-item-active" href="explore-events.html">
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('explore_events') }}">  <!-- Исправлено -->
           <span class="sidebar-icon">🔍</span>
           <span>Explore Events</span>
         </a>
-        <a class="sidebar-item" href="my-events.html">
+        <a class="sidebar-item" href="{{ url_for('my_events') }}">  <!-- Исправлено -->
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
-        <a class="sidebar-item" href="notifications.html">
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">  <!-- Исправлено -->
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
       </nav>
 
       <div class="sidebar-profile">
-        <a href="profile.html" class="sidebar-item sidebar-profile-link">
+        <a href="{{ url_for('profile') }}" class="sidebar-item sidebar-profile-link">  <!-- Исправлено -->
           <span class="sidebar-icon">👤</span>
           <span>Profile</span>
         </a>
@@ -55,46 +55,58 @@
     <!-- MAIN -->
     <main class="event-detail-main">
       <section class="event-detail-card">
-  <div class="event-detail-header">
-    <img src="jobfair-card.png" alt="Job Fair" class="event-detail-image">
-    <div>
-      <h1 class="event-detail-title">Job Fair</h1>
-      <button class="event-tag-btn">Register</button>
-    </div>
-  </div>
+        <!-- Кнопка назад -->
+        <button class="book-back-btn" onclick="goBackToEvents()" style="margin-bottom: 20px;">←</button>
+        
+        <div class="event-detail-header">
+          <img src="{{ url_for('static', filename='jobfair-card.png') }}" alt="Job Fair" class="event-detail-image">  <!-- Исправлено -->
+          <div>
+            <h1 class="event-detail-title">Job Fair</h1>
+            <button class="event-tag-btn" onclick="registerForEvent()">Register</button>
+          </div>
+        </div>
 
-  <!-- блок When / Where / Registration Info -->
-  <div class="event-info-row">
-    <div class="event-info-box">
-      <h3 class="event-info-title">When</h3>
-      <p class="event-info-text">October 10, 10:00 AM</p>
-    </div>
-    <div class="event-info-box">
-      <h3 class="event-info-title">Where</h3>
-      <p class="event-info-text">University Conference Hall</p>
-    </div>
-    <div class="event-info-box">
-      <h3 class="event-info-title">Registration</h3>
-      <p class="event-info-text">Online before October 5</p>
-    </div>
-  </div>
+        <!-- блок When / Where / Registration Info -->
+        <div class="event-info-row">
+          <div class="event-info-box">
+            <h3 class="event-info-title">When</h3>
+            <p class="event-info-text">October 10, 10:00 AM</p>
+          </div>
+          <div class="event-info-box">
+            <h3 class="event-info-title">Where</h3>
+            <p class="event-info-text">University Conference Hall</p>
+          </div>
+          <div class="event-info-box">
+            <h3 class="event-info-title">Registration</h3>
+            <p class="event-info-text">Online before October 5</p>
+          </div>
+        </div>
 
-  <h2 class="event-detail-subtitle">Description</h2>
-  <p class="event-detail-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-    vestibulum. Ut eget mi nec metus fermentum tincidunt. Cras in mi velit. Suspendisse potenti.
-  </p>
+        <h2 class="event-detail-subtitle">Description</h2>
+        <p class="event-detail-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+          vestibulum. Ut eget mi nec metus fermentum tincidunt. Cras in mi velit. Suspendisse potenti.
+        </p>
 
-  <h2 class="event-detail-subtitle">Event Highlights</h2>
-  <ul class="event-detail-list">
-    <li>Meet recruiters from top companies and startups.</li>
-    <li>On-site resume review and interview tips.</li>
-    <li>Networking opportunities with alumni.</li>
-    <li>Workshops throughout the day.</li>
-  </ul>
-</section>
-
+        <h2 class="event-detail-subtitle">Event Highlights</h2>
+        <ul class="event-detail-list">
+          <li>Meet recruiters from top companies and startups.</li>
+          <li>On-site resume review and interview tips.</li>
+          <li>Networking opportunities with alumni.</li>
+          <li>Workshops throughout the day.</li>
+        </ul>
+      </section>
     </main>
   </div>
+
+  <script>
+    function goBackToEvents() {
+      window.location.href = "{{ url_for('explore_events') }}";
+    }
+    
+    function registerForEvent() {
+      alert('Successfully registered for Job Fair!');
+    }
+  </script>
 </body>
 </html>

@@ -22,36 +22,34 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="dashboard.html">
+        <a class="sidebar-item" href="{{ url_for('dashboard') }}">
           <span class="sidebar-icon">🏠</span>
           <span>Home Page</span>
         </a>
         
-        <!-- Only this one has 'sidebar-item-active' -->
-        <a class="sidebar-item sidebar-item-active" href="join-club.html">
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('join_club') }}">
           <span class="sidebar-icon">📄</span>
           <span>Join Club</span>
         </a>
         
-        <a class="sidebar-item" href="explore-events.html">
+        <a class="sidebar-item" href="{{ url_for('explore_events') }}">
           <span class="sidebar-icon">🔍</span>
           <span>Explore Events</span>
         </a>
         
-        <a class="sidebar-item" href="my-events.html">
+        <a class="sidebar-item" href="{{ url_for('my_events') }}">
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
         
-        <a class="sidebar-item" href="notifications.html">
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
       </nav>
 
-      <!-- Fixed Sidebar Profile Link -->
       <div class="sidebar-profile">
-        <a href="profile.html" class="sidebar-item sidebar-profile-link">
+        <a href="{{ url_for('profile') }}" class="sidebar-item sidebar-profile-link">
           <span class="sidebar-icon">👤</span>
           <span>Profile</span>
         </a>
@@ -72,14 +70,15 @@
         <!-- Book Club -->
         <article class="club-card">
           <div class="club-card-header">
-            <img src="book-club.png" alt="Book Club" class="club-icon">
+            <img src="{{ url_for('static', filename='book-club.png') }}" alt="Book Club" class="club-icon">
             <h2 class="club-title">Book Club</h2>
           </div>
           <p class="club-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
           </p>
-          <button class="club-request-btn" onclick="window.location.href='book-club.html'">
+          <!-- ТОЛЬКО ЭТА КНОПКА РАБОТАЕТ -->
+          <button class="club-request-btn" onclick="goToBookClub()">
             Request
           </button>
         </article>
@@ -87,14 +86,14 @@
         <!-- Robot Club -->
         <article class="club-card">
           <div class="club-card-header">
-            <img src="robot-club-icon.png" alt="Robot Club" class="club-icon">
+            <img src="{{ url_for('static', filename='robot-club-icon.png') }}" alt="Robot Club" class="club-icon">
             <h2 class="club-title">Robot Club</h2>
           </div>
           <p class="club-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
           </p>
-          <button class="club-request-btn">
+          <button class="club-request-btn" onclick="showComingSoon()">
             Request
           </button>
         </article>
@@ -102,14 +101,14 @@
         <!-- Debate Club -->
         <article class="club-card">
           <div class="club-card-header">
-            <img src="debate-club-icon.png" alt="Debate Club" class="club-icon">
+            <img src="{{ url_for('static', filename='debate-club-icon.png') }}" alt="Debate Club" class="club-icon">
             <h2 class="club-title">Debate Club</h2>
           </div>
           <p class="club-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
           </p>
-          <button class="club-request-btn">
+          <button class="club-request-btn" onclick="showComingSoon()">
             Request
           </button>
         </article>
@@ -117,14 +116,14 @@
         <!-- Art Club -->
         <article class="club-card">
           <div class="club-card-header">
-            <img src="art-club-icon.png" alt="Art Club" class="club-icon">
+            <img src="{{ url_for('static', filename='art-club-icon.png') }}" alt="Art Club" class="club-icon">
             <h2 class="club-title">Art Club</h2>
           </div>
           <p class="club-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             lacinia odio vitae vestibulum. Ut eget mi nec metus fermentum tincidunt.
           </p>
-          <button class="club-request-btn">
+          <button class="club-request-btn" onclick="showComingSoon()">
             Request
           </button>
         </article>
@@ -132,5 +131,15 @@
       </section>
     </main>
   </div>
+
+  <script>
+    function goToBookClub() {
+      window.location.href = "{{ url_for('book_club') }}";
+    }
+    
+    function showComingSoon() {
+      alert('This club page is coming soon! Only Book Club is available for now.');
+    }
+  </script>
 </body>
 </html>

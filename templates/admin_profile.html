@@ -6,9 +6,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Стили для модального окна */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .modal-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .modal-back {
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 15px;
+      color: #666;
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .save-btn {
+      width: 100%;
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .save-btn:hover {
+      background: #0056CC;
+    }
+    
+    /* Flash сообщения */
+    .flash-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+    }
+    
+    .flashes {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .flashes li {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      max-width: 300px;
+    }
+    
+    .flashes li.danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .flashes li.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .flashes li.warning {
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeaa7;
+    }
+    
+    .flashes li.info {
+      background-color: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-page">
+    
+    <!-- Отображение flash сообщений -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
 
     <!-- SIDEBAR (Admin Links) -->
     <aside class="sidebar">
@@ -22,34 +159,34 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="admin-dashboard.html">
+        <a class="sidebar-item" href="{{ url_for('admin_dashboard') }}">
           <span class="sidebar-icon">🏠</span>
           <span>Home Page</span>
         </a>
-        <a class="sidebar-item" href="admin-club.html">
+        <a class="sidebar-item" href="{{ url_for('admin_club') }}">
           <span class="sidebar-icon">📘</span>
           <span>Club</span>
         </a>
-        <a class="sidebar-item" href="admin-events.html">
+        <a class="sidebar-item" href="{{ url_for('admin_events') }}">
           <span class="sidebar-icon">📅</span>
           <span>Events</span>
         </a>
-        <a class="sidebar-item" href="admin-explore.html">
+        <a class="sidebar-item" href="{{ url_for('admin_explore') }}">
           <span class="sidebar-icon">🔍</span>
           <span>Explore Events</span>
         </a>
-        <a class="sidebar-item" href="admin-myevents.html">
+        <a class="sidebar-item" href="{{ url_for('admin_myevents') }}">
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
-        <a class="sidebar-item" href="admin-notifications.html">
+        <a class="sidebar-item" href="{{ url_for('admin_notifications') }}">
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
       </nav>
 
       <div class="sidebar-profile">
-        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link active">
+        <a href="{{ url_for('admin_profile') }}" class="sidebar-item sidebar-profile-link active">
           <span class="sidebar-icon">👤</span>
           <span>Profile</span>
         </a>
@@ -63,9 +200,12 @@
       <div class="profile-container">
         <!-- User Info -->
         <div class="user-info">
-          <img src="profile.png" alt="Profile" class="user-avatar">
+          <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="user-avatar">
           <div class="user-details">
-            <h2>Alma Karimova</h2>
+            <h2>{{ session.get('user_name', 'Admin User') }}</h2>
+            <p class="user-email" style="color: #666; font-size: 14px; margin-bottom: 5px;">
+              {{ session.get('user_email', 'admin@campus.kz') }}
+            </p>
             <p class="role">Head of Book Club</p>
             <p style="font-size:12px; color:#666;">113 members</p>
           </div>
@@ -73,7 +213,7 @@
 
         <!-- Menu Options -->
         <ul class="profile-menu">
-          <li class="profile-menu-item" onclick="location.href='admin-edit-profile.html'">
+          <li class="profile-menu-item" onclick="goToAdminEditProfile()">
             <div class="menu-left">
               <span class="menu-icon">⚙️</span>
               <span>Edit Profile</span>
@@ -81,7 +221,7 @@
             <span class="arrow-icon">›</span>
           </li>
 
-          <li class="profile-menu-item" onclick="document.getElementById('passwordModal').classList.add('active')">
+          <li class="profile-menu-item" onclick="showPasswordModal()">
             <div class="menu-left">
               <span class="menu-icon">🔒</span>
               <span>Change Password</span>
@@ -101,7 +241,7 @@
           </li>
         </ul>
 
-        <a href="#" class="logout-link">
+        <a href="{{ url_for('logout') }}" class="logout-link">
           Log Out <span style="transform: rotate(180deg);">↪</span>
         </a>
       </div>
@@ -111,22 +251,71 @@
     <div id="passwordModal" class="modal-overlay">
       <div class="modal-card">
         <div class="modal-header">
-          <div class="modal-back" onclick="document.getElementById('passwordModal').classList.remove('active')">‹</div>
+          <div class="modal-back" onclick="hidePasswordModal()">‹</div>
           <div class="modal-title">Change Password</div>
         </div>
         
         <form>
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="New Password">
+            <input type="password" class="form-control" placeholder="Current Password" required>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Confirm Password">
+            <input type="password" class="form-control" placeholder="New Password" required>
           </div>
-          <button type="button" class="save-btn" onclick="document.getElementById('passwordModal').classList.remove('active')">Save</button>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirm New Password" required>
+          </div>
+          <button type="button" class="save-btn" onclick="savePassword()">Save</button>
         </form>
       </div>
     </div>
 
   </div>
+
+  <script>
+    // Функция для перехода на страницу редактирования профиля
+    function goToAdminEditProfile() {
+      window.location.href = "{{ url_for('admin_edit_profile') }}";
+    }
+    
+    // Функции для работы с модальным окном пароля
+    function showPasswordModal() {
+      document.getElementById('passwordModal').classList.add('active');
+    }
+    
+    function hidePasswordModal() {
+      document.getElementById('passwordModal').classList.remove('active');
+    }
+    
+    function savePassword() {
+      alert('Password changed successfully!');
+      hidePasswordModal();
+    }
+    
+    // Закрытие модального окна при клике вне его
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('passwordModal');
+      
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          hidePasswordModal();
+        }
+      });
+      
+      // Автоматическое скрытие flash сообщений через 5 секунд
+      setTimeout(function() {
+        const flashes = document.querySelector('.flash-container');
+        if (flashes) {
+          flashes.style.transition = 'opacity 0.5s';
+          flashes.style.opacity = '0';
+          setTimeout(function() {
+            if (flashes.parentNode) {
+              flashes.parentNode.removeChild(flashes);
+            }
+          }, 500);
+        }
+      }, 5000);
+    });
+  </script>
 </body>
 </html>

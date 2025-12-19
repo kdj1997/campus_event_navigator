@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <!-- Include JS if you need dynamic loading, otherwise static for now -->
-  <!-- <script defer src="events.js"></script> -->
 </head>
 <body>
   <div class="dashboard-page">
@@ -41,7 +39,7 @@
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
-        <a class="sidebar-item" href="{{ url_for('notification') }}">
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
@@ -81,11 +79,17 @@
           <p class="card-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
           </p>
-          <button class="more-btn" onclick="location.href='event-concert.html'">More details</button>
+          <button class="more-btn" onclick="goToConcert()">More details</button>  <!-- Добавлен onclick -->
         </div>
 
       </div>
     </main>
   </div>
+
+  <script>
+    function goToConcert() {
+      window.location.href = "{{ url_for('event_concert') }}";
+    }
+  </script>
 </body>
 </html>

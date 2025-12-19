@@ -5,7 +5,7 @@
   <title>Campus Event Navigator – Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="dashboard-page">
@@ -13,7 +13,6 @@
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo">
-        <!-- сюда поставь свой логотип-иконку -->
         <div class="sidebar-logo-icon">📅</div>
         <div class="sidebar-logo-text">
           <span>CAMPUS</span>
@@ -23,32 +22,33 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item sidebar-item-active" href="#">
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('dashboard') }}">
           <span class="sidebar-icon">🏠</span>
           <span>Home Page</span>
         </a>
-        <a class="sidebar-item" href="join-club.html">
+        <a class="sidebar-item" href="{{ url_for('join_club') }}">
           <span class="sidebar-icon">📘</span>
           <span>Join Club</span>
         </a>
-        <a class="sidebar-item" href="explore-events.html">
+        <a class="sidebar-item" href="{{ url_for('explore_events') }}">
           <span class="sidebar-icon">🔍</span>
           <span>Explore Events</span>
         </a>
-        <a class="sidebar-item" href="my-events.html">
+        <a class="sidebar-item" href="{{ url_for('my_events') }}">
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
-        <a class="sidebar-item" href="notifications.html">
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">  <!-- Исправлено с notification на notifications -->
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
       </nav>
 
       <div class="sidebar-profile">
-        <a href="profile.html" class="sidebar-item sidebar-profile-link"></a>
-        <span class="sidebar-icon">👤</span>
-        <span>Profile</span>
+        <a href="{{ url_for('profile') }}" class="sidebar-item sidebar-profile-link">
+          <span class="sidebar-icon">👤</span>
+          <span>Profile</span>
+        </a>
       </div>
     </aside>
 
@@ -61,13 +61,13 @@
       <!-- TOP CARDS -->
       <section class="dashboard-cards">
         <div class="dashboard-card">
-          <img src="book-club.png" alt="Book Club" class="card-image">
+          <img src="{{ url_for('static', filename='book-club.png') }}" alt="Book Club" class="card-image">
           <div class="card-title">Book Club</div>
         </div>
 
         <div class="dashboard-card">
-          <img src="concert.png" alt="Concert" class="card-image">
-        
+          <img src="{{ url_for('static', filename='concert.png') }}" alt="Concert" class="card-image">
+          <div class="card-title">Concert</div>  <!-- Добавлено -->
         </div>
       </section>
 

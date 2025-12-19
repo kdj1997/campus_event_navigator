@@ -1,10 +1,11 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Admin - Events</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="dashboard-page">
@@ -15,16 +16,16 @@
         <div class="sidebar-logo-text"><span>CAMPUS</span><span>EVENT</span><span>NAVIGATOR</span></div>
       </div>
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="admin-dashboard.html"><span class="sidebar-icon">🏠</span> Home Page</a>
-        <a class="sidebar-item" href="admin-club.html"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item" href="{{ url_for('admin_dashboard') }}"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item" href="{{ url_for('admin_club') }}"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('admin_events') }}"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_explore') }}"><span class="sidebar-icon">🔍</span> Explore Events</a>
         <!-- Active -->
-        <a class="sidebar-item sidebar-item-active" href="admin-events.html"><span class="sidebar-icon">📅</span> Events</a>
-        <a class="sidebar-item" href="admin-explore.html"><span class="sidebar-icon">🔍</span> Explore Events</a>
-        <a class="sidebar-item" href="admin-myevents.html"><span class="sidebar-icon">♡</span> My Events</a>
-        <a class="sidebar-item" href="admin-notifications.html"><span class="sidebar-icon">🔔</span> Notifications</a>
+        <a class="sidebar-item" href="{{ url_for('admin_myevents') }}"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_notifications') }}"><span class="sidebar-icon">🔔</span> Notifications</a>
       </nav>
       <div class="sidebar-profile">
-        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
+        <a href="{{ url_for('admin_profile') }}" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
       </div>
     </aside>
 
@@ -36,7 +37,7 @@
         <!-- Card Preview -->
         <div class="event-preview-card">
           <!-- Replace with Job Fair Image -->
-          <img src="jobfair-card.png" alt="Job Fair" class="event-preview-img">
+          <img src="{{ url_for('static', filename='jobfair-card.png') }}" alt="Job Fair" class="event-preview-img">
         </div>
         
         <!-- Header -->
@@ -48,6 +49,7 @@
           <div class="content-header-row" style="margin-top:-20px;">
             <h2 style="font-size: 24px;">Job Fair</h2>
             <span class="edit-icon-lg">✎</span>
+            <button class="delete-button">Delete</button> <!-- Добавлена кнопка Delete -->
           </div>
         </div>
       </div>
@@ -87,7 +89,6 @@
             <span class="pencil-icon">✎</span>
           </div>
         </div>
-
         <div class="contact-group">
           <div class="contact-label">Time *</div>
           <div class="contact-input-wrapper">

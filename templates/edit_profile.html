@@ -5,12 +5,111 @@
   <title>Campus Event Navigator – Edit Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .edit-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .back-btn {
+      font-size: 24px;
+      text-decoration: none;
+      color: #333;
+      margin-right: 15px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .center-title {
+      font-size: 20px;
+      font-weight: 600;
+      flex-grow: 1;
+      text-align: center;
+    }
+    
+    .edit-avatar-section {
+      position: relative;
+      width: 100px;
+      margin: 0 auto 30px;
+    }
+    
+    .camera-icon-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .form-input-wrapper {
+      position: relative;
+    }
+    
+    .form-input-wrapper .form-control {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .edit-pencil {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      cursor: pointer;
+    }
+    
+    .save-btn-container {
+      margin-top: 30px;
+    }
+    
+    .save-btn {
+      width: 100%;
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .save-btn:hover {
+      background: #0056CC;
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-page">
 
-    <!-- SIDEBAR (Identical) -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo">
         <div class="sidebar-logo-icon">📅</div>
@@ -22,30 +121,30 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="dashboard.html">
+        <a class="sidebar-item" href="{{ url_for('dashboard') }}">
           <span class="sidebar-icon">🏠</span>
           <span>Home Page</span>
         </a>
-        <a class="sidebar-item" href="join-club.html">
+        <a class="sidebar-item" href="{{ url_for('join_club') }}">
           <span class="sidebar-icon">📘</span>
           <span>Join Club</span>
         </a>
-        <a class="sidebar-item" href="explore-events.html">
+        <a class="sidebar-item" href="{{ url_for('explore_events') }}">
           <span class="sidebar-icon">🔍</span>
           <span>Explore Events</span>
         </a>
-        <a class="sidebar-item" href="my-events.html">
+        <a class="sidebar-item" href="{{ url_for('my_events') }}">
           <span class="sidebar-icon">♡</span>
           <span>My Events</span>
         </a>
-        <a class="sidebar-item" href="notifications.html">
+        <a class="sidebar-item" href="{{ url_for('notifications') }}">
           <span class="sidebar-icon">🔔</span>
           <span>Notifications</span>
         </a>
       </nav>
 
       <div class="sidebar-profile">
-        <a href="profile.html" class="sidebar-item sidebar-profile-link active">
+        <a href="{{ url_for('profile') }}" class="sidebar-item sidebar-profile-link active">
           <span class="sidebar-icon">👤</span>
           <span>Profile</span>
         </a>
@@ -59,22 +158,22 @@
       <div class="profile-container">
         <!-- Header with Back Button -->
         <div class="edit-header">
-          <a href="profile.html" class="back-btn">‹</a>
+          <button class="back-btn" onclick="goBackToProfile()">‹</button>
           <div class="center-title">Edit Profile</div>
         </div>
 
         <!-- Avatar with Camera Icon -->
         <div class="edit-avatar-section">
-          <img src="profile.png" alt="Profile" class="user-avatar" style="width: 100px; height: 100px;">
+          <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="user-avatar" style="width: 100px; height: 100px;">
           <div class="camera-icon-badge">📷</div>
         </div>
 
-        <!-- Edit Form -->
+        <!-- Edit Form - БЕЗ action -->
         <form>
           <div class="form-group">
             <label>First Name</label>
             <div class="form-input-wrapper">
-              <input type="text" class="form-control" value="Aya">
+              <input type="text" class="form-control" value="{{ session.get('user_name', 'User').split()[0] if session.get('user_name') else 'User' }}" name="first_name">
               <span class="edit-pencil">✎</span>
             </div>
           </div>
@@ -82,7 +181,7 @@
           <div class="form-group">
             <label>Last Name</label>
             <div class="form-input-wrapper">
-              <input type="text" class="form-control" value="Karimova">
+              <input type="text" class="form-control" value="{{ session.get('user_name', '').split()[1] if session.get('user_name') and session.get('user_name').split()|length > 1 else '' }}" name="last_name">
               <span class="edit-pencil">✎</span>
             </div>
           </div>
@@ -90,26 +189,52 @@
           <div class="form-group">
             <label>E-Mail</label>
             <div class="form-input-wrapper">
-              <input type="email" class="form-control" value="aya_karimova2005@gmail.com">
-              <span class="edit-pencil">✎</span>
+              <input type="email" class="form-control" value="{{ session.get('user_email', '') }}" name="email" readonly style="background-color: #f5f5f5;">
+              <span class="edit-pencil" style="color: #ccc;">✎</span>
             </div>
+            <small style="color: #777; font-size: 12px;">Email cannot be changed</small>
           </div>
 
           <div class="form-group">
             <label>Mobile</label>
             <div class="form-input-wrapper">
-              <input type="tel" class="form-control" value="+7(777)7777777">
+              <input type="tel" class="form-control" value="+7(777)7777777" name="phone">
               <span class="edit-pencil">✎</span>
             </div>
           </div>
 
           <div class="save-btn-container">
-            <button type="button" class="save-btn" onclick="location.href='profile.html'">Save</button>
+            <button type="button" class="save-btn" onclick="saveProfile()">Save</button>
           </div>
         </form>
 
       </div>
     </main>
   </div>
+
+  <script>
+    function goBackToProfile() {
+      window.location.href = "{{ url_for('profile') }}";
+    }
+    
+    function saveProfile() {
+      // Просто показываем сообщение и возвращаем на профиль
+      alert('Profile saved successfully! (Note: This is demo - changes are not saved to database)');
+      window.location.href = "{{ url_for('profile') }}";
+    }
+    
+    // Делаем поля редактируемыми при клике на карандаш
+    document.addEventListener('DOMContentLoaded', function() {
+      const pencils = document.querySelectorAll('.edit-pencil');
+      pencils.forEach(pencil => {
+        pencil.addEventListener('click', function() {
+          const input = this.parentNode.querySelector('.form-control');
+          if (!input.readOnly) {
+            input.focus();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

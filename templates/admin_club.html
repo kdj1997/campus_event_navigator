@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Admin - Club</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="dashboard-page">
@@ -18,16 +18,16 @@
         </div>
       </div>
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="admin-dashboard.html"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item" href="{{ url_for('admin_dashboard') }}"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item sidebar-item-active" href="{{ url_for('admin_club') }}"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item" href="{{ url_for('admin_events') }}"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_explore') }}"><span class="sidebar-icon">🔍</span> Explore Events</a>
         <!-- Active -->
-        <a class="sidebar-item sidebar-item-active" href="admin-club.html"><span class="sidebar-icon">📘</span> Club</a>
-        <a class="sidebar-item" href="admin-events.html"><span class="sidebar-icon">📅</span> Events</a>
-        <a class="sidebar-item" href="admin-explore.html"><span class="sidebar-icon">🔍</span> Explore Events</a>
-        <a class="sidebar-item" href="admin-myevents.html"><span class="sidebar-icon">♡</span> My Events</a>
-        <a class="sidebar-item" href="admin-notifications.html"><span class="sidebar-icon">🔔</span> Notifications</a>
+        <a class="sidebar-item" href="{{ url_for('admin_myevents') }}"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_notifications') }}"><span class="sidebar-icon">🔔</span> Notifications</a>
       </nav>
       <div class="sidebar-profile">
-        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
+        <a href="{{ url_for('admin_profile') }}" class="sidebar-item sidebar-profile-link"><span class="sidebar-icon">👤</span> Profile</a>
       </div>
     </aside>
 
@@ -37,9 +37,9 @@
 
       <div class="content-header-row">
         <!-- Replace with book icon image -->
-        <img src="book-club.png" alt="Book" class="club-header-icon" style="width:40px;">
-        <h1 class="page-title">Book Club</h1>
-        <span class="edit-icon-lg">✎</span>
+        <img src="{{ url_for('static', filename='book-club.png') }}" alt="Book" class="club-header-icon" style="width:40px;">
+        <h1 class="page-title">Book Club <span class="edit-icon-lg">✎</span></h1>
+        <button class="delete-button">Delete</button> <!-- Добавлена кнопка Delete -->
       </div>
 
       <!-- Information Section -->
@@ -52,7 +52,7 @@
       <div class="admin-form-section">
         <div class="section-label">
           Requirements 
-          <div class="add-btn-circle">+</div>
+          <div class="add-btn-circle">+</div> <!-- Добавлена кнопка плюс -->
         </div>
         <div class="list-input-group">
           <input type="text" class="list-input" value="Interest in reading, writing, or literature discussions.">
@@ -83,7 +83,6 @@
             <span class="pencil-icon">✎</span>
           </div>
         </div>
-
         <div class="contact-group">
           <div class="contact-label">Email</div>
           <div class="contact-input-wrapper">

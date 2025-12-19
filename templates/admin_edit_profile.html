@@ -5,7 +5,188 @@
   <title>Campus Event Navigator – Admin Edit Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Дополнительные стили для страницы редактирования */
+    .edit-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .back-btn {
+      font-size: 2rem;
+      color: #6c757d;
+      text-decoration: none;
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    
+    .back-btn:hover {
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+    
+    .center-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #212529;
+      flex-grow: 1;
+      text-align: center;
+    }
+    
+    .edit-avatar-section {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 2rem;
+    }
+    
+    .user-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .camera-icon-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #4dabf7;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 3px solid white;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    
+    .camera-icon-badge:hover {
+      background: #339af0;
+      transform: scale(1.05);
+    }
+    
+    .profile-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #495057;
+      font-size: 0.95rem;
+    }
+    
+    .form-input-wrapper {
+      position: relative;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      padding-right: 3rem;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      background-color: #f8f9fa;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: #4dabf7;
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    
+    .edit-pencil {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6c757d;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    
+    .edit-pencil:hover {
+      color: #4dabf7;
+    }
+    
+    .save-btn-container {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .save-btn {
+      background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 15px rgba(51, 154, 240, 0.2);
+    }
+    
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(51, 154, 240, 0.3);
+    }
+    
+    .save-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .profile-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      
+      .center-title {
+        font-size: 1.5rem;
+      }
+      
+      .save-btn {
+        width: 100%;
+        padding: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-page">
@@ -22,34 +203,15 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a class="sidebar-item" href="admin-dashboard.html">
-          <span class="sidebar-icon">🏠</span>
-          <span>Home Page</span>
-        </a>
-        <a class="sidebar-item" href="admin-club.html">
-          <span class="sidebar-icon">📘</span>
-          <span>Club</span>
-        </a>
-        <a class="sidebar-item" href="admin-events.html">
-          <span class="sidebar-icon">📅</span>
-          <span>Events</span>
-        </a>
-        <a class="sidebar-item" href="admin-explore.html">
-          <span class="sidebar-icon">🔍</span>
-          <span>Explore Events</span>
-        </a>
-        <a class="sidebar-item" href="admin-myevents.html">
-          <span class="sidebar-icon">♡</span>
-          <span>My Events</span>
-        </a>
-        <a class="sidebar-item" href="admin-notifications.html">
-          <span class="sidebar-icon">🔔</span>
-          <span>Notifications</span>
-        </a>
+        <a class="sidebar-item" href="{{ url_for('admin_dashboard') }}"><span class="sidebar-icon">🏠</span> Home Page</a>
+        <a class="sidebar-item" href="{{ url_for('admin_club') }}"><span class="sidebar-icon">📘</span> Club</a>
+        <a class="sidebar-item" href="{{ url_for('admin_events') }}"><span class="sidebar-icon">📅</span> Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_explore') }}"><span class="sidebar-icon">🔍</span> Explore Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_myevents') }}"><span class="sidebar-icon">♡</span> My Events</a>
+        <a class="sidebar-item" href="{{ url_for('admin_notifications') }}"><span class="sidebar-icon">🔔</span> Notifications</a>
       </nav>
-
       <div class="sidebar-profile">
-        <a href="admin-profile.html" class="sidebar-item sidebar-profile-link active">
+        <a href="{{ url_for('admin_profile') }}" class="sidebar-item sidebar-profile-link active">
           <span class="sidebar-icon">👤</span>
           <span>Profile</span>
         </a>
@@ -61,61 +223,140 @@
       <div class="admin-page-header">Profile Admin</div>
 
       <div class="profile-container">
-        <!-- Header with Back Button (Points to Admin Profile) -->
+        <!-- Header with Back Button -->
         <div class="edit-header">
-          <a href="admin-profile.html" class="back-btn">‹</a>
+          <a href="{{ url_for('admin_profile') }}" class="back-btn" title="Back to Profile">‹</a>
           <div class="center-title">Edit Profile</div>
         </div>
 
-        <!-- Avatar -->
+        <!-- Avatar Section -->
         <div class="edit-avatar-section">
-          <!-- Replace src with your admin profile image -->
-          <img src="profile.png" alt="Profile" class="user-avatar" style="width: 100px; height: 100px;">
-          <div class="camera-icon-badge">📷</div>
+          <img src="{{ url_for('static', filename='profile.png') }}" alt="Admin Profile" class="user-avatar" id="profileAvatar">
+          <div class="camera-icon-badge" id="changeAvatarBtn" title="Change profile picture">📷</div>
+          <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
         </div>
 
-        <!-- Edit Form (Pre-filled with Admin Data) -->
-        <form>
+        <!-- Edit Form -->
+        <form id="editProfileForm">
           <div class="form-group">
-            <label>First Name</label>
+            <label for="firstName">First Name</label>
             <div class="form-input-wrapper">
-              <input type="text" class="form-control" value="Alma">
-              <span class="edit-pencil">✎</span>
+              <input type="text" id="firstName" class="form-control" value="Alma" required>
+              <span class="edit-pencil" onclick="document.getElementById('firstName').focus()">✎</span>
             </div>
           </div>
 
           <div class="form-group">
-            <label>Last Name</label>
+            <label for="lastName">Last Name</label>
             <div class="form-input-wrapper">
-              <input type="text" class="form-control" value="Karimova">
-              <span class="edit-pencil">✎</span>
+              <input type="text" id="lastName" class="form-control" value="Karimova" required>
+              <span class="edit-pencil" onclick="document.getElementById('lastName').focus()">✎</span>
             </div>
           </div>
 
           <div class="form-group">
-            <label>E-Mail</label>
+            <label for="email">E-Mail</label>
             <div class="form-input-wrapper">
-              <input type="email" class="form-control" value="alma_karimova2003@gmail.com">
-              <span class="edit-pencil">✎</span>
+              <input type="email" id="email" class="form-control" value="alma_karimova2003@gmail.com" required>
+              <span class="edit-pencil" onclick="document.getElementById('email').focus()">✎</span>
             </div>
           </div>
 
           <div class="form-group">
-            <label>Mobile</label>
+            <label for="mobile">Mobile</label>
             <div class="form-input-wrapper">
-              <input type="tel" class="form-control" value="+7(777)7777777">
-              <span class="edit-pencil">✎</span>
+              <input type="tel" id="mobile" class="form-control" value="+7(777)7777777" required>
+              <span class="edit-pencil" onclick="document.getElementById('mobile').focus()">✎</span>
             </div>
           </div>
 
           <div class="save-btn-container">
-            <!-- Returns to Admin Profile -->
-            <button type="button" class="save-btn" onclick="location.href='admin-profile.html'">Save</button>
+            <button type="submit" class="save-btn">Save Changes</button>
           </div>
         </form>
 
       </div>
     </main>
   </div>
+
+  <script>
+    // Обработка смены аватара
+    document.getElementById('changeAvatarBtn').addEventListener('click', function() {
+      document.getElementById('avatarUpload').click();
+    });
+    
+    document.getElementById('avatarUpload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profileAvatar').src = e.target.result;
+          // Здесь можно добавить отправку на сервер
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Обработка формы
+    document.getElementById('editProfileForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Собираем данные формы
+      const formData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        mobile: document.getElementById('mobile').value
+      };
+      
+      // Валидация
+      if (!formData.firstName || !formData.lastName || !formData.email) {
+        alert('Please fill in all required fields');
+        return;
+      }
+      
+      if (!validateEmail(formData.email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      
+      // Здесь должна быть отправка данных на сервер
+      console.log('Saving profile data:', formData);
+      
+      // Имитация сохранения
+      const saveBtn = document.querySelector('.save-btn');
+      const originalText = saveBtn.textContent;
+      saveBtn.textContent = 'Saving...';
+      saveBtn.disabled = true;
+      
+      setTimeout(() => {
+        saveBtn.textContent = 'Saved!';
+        saveBtn.style.background = 'linear-gradient(135deg, #51cf66 0%, #40c057 100%)';
+        
+        setTimeout(() => {
+          // Перенаправление на страницу профиля
+          window.location.href = "{{ url_for('admin_profile') }}";
+        }, 1000);
+      }, 1500);
+    });
+    
+    // Валидация email
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+    
+    // Добавляем интерактивность полям ввода
+    const formInputs = document.querySelectorAll('.form-control');
+    formInputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.querySelector('.edit-pencil').style.color = '#4dabf7';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.querySelector('.edit-pencil').style.color = '#6c757d';
+      });
+    });
+  </script>
 </body>
 </html>
